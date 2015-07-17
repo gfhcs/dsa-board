@@ -1,7 +1,7 @@
+#!/usr/bin/python3
+
 # Copyricht (C) 2015 by the Schwarzenholz Birthday Connection
 
-#!/usr/bin/python3
-# coding=utf8
 
 ##############################################################
 # PARAMETERS:
@@ -22,11 +22,9 @@ button_indices = {1 : 0,
 media_dirs = ["/media"]
             
 # Name suffices of files that are to be recognized as media files
-extensions = (".wav", ".mp2", ".mp3", ".mp4", ".mpeg")
+extensions = ".wav", ".mp2", ".mp3", ".mp4", ".mpeg"
 
 ##############################################################
-
-log("Importing python modules...")
 
 # Helper functions:
 from util import *
@@ -38,8 +36,6 @@ import RPi.GPIO as GPIO
 
 # For handling filesystem paths.
 import os.path
-
-logLine("Done.")
 
 log("Initializing pins for button input...")
  # Make sure that pins are numbered according to the P1 header of the Pi board.
@@ -58,7 +54,7 @@ fc = 0 # The number of files that have been recognized as media files.
 
 # Search for media:
 for root in media_dirs:
-	for dirpath, _, filenames in os.walk(root)
+	for dirpath, _, filenames in os.walk(root):
 		
 		dirname = os.path.dirname(dirpath)
 
