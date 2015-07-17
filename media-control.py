@@ -76,5 +76,5 @@ logLine("Done. {fc} files have been selected.".format(fc=fc))
 
 playRandomMedium(media[0])
 
-when button pressed:
-	playRandomMedium(media[buttonIndex])
+# Everything is set up.
+# Wait for button presses and play files:

@@ -7,15 +7,16 @@
 import random
 random.seed()
 
+# For running shell commands:
+import subprocess
+
 
 def log(msg):
 	print(msg, end='')
 
-
 def logLine(msg):
 	log(msg)
 	log('\n')
-
 
 
 def interpretNumerically(fileName):
@@ -42,4 +43,6 @@ def playRandomMedium(mediaPaths):
 		pass
 
 def playMedium(filePath):
-	pass
+	args = ['-f', '--video-on-top', '--no-random', '--no-video-title-show', filePath, 'vlc://quit']
+
+	Popen('vlc', *args)
