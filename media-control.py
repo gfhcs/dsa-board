@@ -77,7 +77,27 @@ for root in media_dirs:
 
 logLine("Done. {fc} files have been selected.".format(fc=fc))
 
-playRandomMedium(media[0])
 
 # Everything is set up.
 # Wait for button presses and play files:
+
+# Start listening for button events:
+GPIO.add_event_detect(25, GPIO.RISING, callback=lambda channel : on_button_down(button_indices[channel]))
+GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda channel : on_button_up(button_indices[channel]))
+
+# Play a welcome medium:
+playRandomMedium(media[0])
+
+ 
+def on_button_down(buttonIndex):
+	logLine("Button {bi} down!".format(bi=buttonIndex))
+	
+def on_button_up(buttonIndex):
+	logLine("Button {bi} up!".format(bi=buttonIndex))
+  
+try:  
+
+    sleep(float('inf'))         # wait 30 seconds  
+  
+finally:                   # this block will run no matter how the try block exits  
+    GPIO.cleanup()         # clean up after yourself  
