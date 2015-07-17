@@ -9,8 +9,9 @@
 
 # Maps GPIO pin numbers to button indices
 # TODO: Fill in proper button channels here!
-button_indices = {1 : 0
-				  2 : 1}
+button_indices = {1 : 0,
+				  2 : 1,
+				  3 : 2}
 
 # A list of full paths to directories that are to be searched
 # for media.
@@ -78,3 +79,11 @@ playRandomMedium(media[0])
 
 # Everything is set up.
 # Wait for button presses and play files:
+
+	buttonIndex = 1
+	while (True):
+		time.sleep(5)
+		
+		playRandomMedium(media[buttonIndex % 3])
+	
+		buttonIndex += 1
