@@ -1,7 +1,7 @@
+#!/usr/bin/python3
+
 # Copyricht (C) 2015 by the Schwarzenholz Birthday Connection
 
-#!/usr/bin/python3
-# coding=utf8
 
 ##############################################################
 # PARAMETERS:
@@ -9,8 +9,9 @@
 
 # Maps GPIO pin numbers to button indices
 # TODO: Fill in proper button channels here!
-button_indices = {1 : 0
-				  2 : 1}
+button_indices = {1 : 0,
+				  2 : 1,
+				  3 : 2}
 
 # A list of full paths to directories that are to be searched
 # for media.
@@ -18,34 +19,31 @@ button_indices = {1 : 0
 # in a directory the name of which can be interpreted numerically
 # are assigned to the button that has this numerical interpretation
 # as its index
-media_dirs = ["resources"]
+media_dirs = ["/media"]
             
 # Name suffices of files that are to be recognized as media files
-extensions = (".wav", ".mp2", ".mp3", ".mp4", ".mpeg")
+extensions = ".wav", ".mp2", ".mp3", ".mp4", ".mpeg"
 
 ##############################################################
-
-log("Importing python modules...")
 
 # Helper functions:
 from util import *
 
 # This API gives access to the "General Purpose Input/Output"
 # of the Pi board
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 # For handling filesystem paths.
 import os.path
 
-logLine("Done.")
-
 log("Initializing pins for button input...")
 # Make sure that pins are numbered according to the P1 header of the Pi board.
-#GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 
 # Set our button channels to input mode:
 #for chn in button_channels:
-#	GPIO.setup(ch, GPIO.IN)
+for ch in button_indices.iter_keys():
+	GPIO.setup(ch, GPIO.IN)
 logLine("Done.")
 
 
@@ -56,7 +54,7 @@ fc = 0 # The number of files that have been recognized as media files.
 
 # Search for media:
 for root in media_dirs:
-	for dirpath, _, filenames in os.walk(root)
+	for dirpath, _, filenames in os.walk(root):
 		
 		dirname = os.path.dirname(dirpath)
 

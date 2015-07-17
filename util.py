@@ -8,11 +8,11 @@ import random
 random.seed()
 
 # For running shell commands:
-import subprocess
+from subprocess import *
 
 
 def log(msg):
-	print(msg, end='')
+	print(msg, end="")
 
 def logLine(msg):
 	log(msg)
@@ -29,7 +29,7 @@ def interpretNumerically(fileName):
 	try:
 		return int(fileName)
 	except:
-		raise ValueError("Could not interpret the file name '{fileName}' as a number!".format(fileName=fileName)
+		raise ValueError("Could not interpret the file name '{fileName}' as a number!".format(fileName=fileName))
 
 
 def playRandomMedium(mediaPaths):
@@ -38,7 +38,7 @@ def playRandomMedium(mediaPaths):
 	The given iterable must contain full paths.
 	'''
 	try:
-		playMedium(random.choice(mediaPaths)
+		playMedium(random.choice(mediaPaths))
 	except IndexError:
 		pass
 
