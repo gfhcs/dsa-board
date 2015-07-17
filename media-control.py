@@ -31,19 +31,19 @@ from util import *
 
 # This API gives access to the "General Purpose Input/Output"
 # of the Pi board
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
 # For handling filesystem paths.
 import os.path
 
 log("Initializing pins for button input...")
 # Make sure that pins are numbered according to the P1 header of the Pi board.
-GPIO.setmode(GPIO.BOARD)
+#GPIO.setmode(GPIO.BOARD)
 
 # Set our button channels to input mode:
 #for chn in button_channels:
-for ch in button_indices.iter_keys():
-	GPIO.setup(ch, GPIO.IN)
+#for ch in button_indices.iter_keys():
+#	GPIO.setup(ch, GPIO.IN)
 logLine("Done.")
 
 
