@@ -43,6 +43,6 @@ def playRandomMedium(mediaPaths):
 		pass
 
 def playMedium(filePath):
-	args = ['-f', '--video-on-top', '--no-random', '--no-video-title-show', filePath, 'vlc://quit']
+	args = ['vlc', '-f', '--video-on-top', '--no-random', '--no-video-title-show', filePath, 'vlc://quit']
 
-	Popen('vlc', *args)
+	Popen(args)
