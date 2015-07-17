@@ -18,7 +18,7 @@ button_indices = {1 : 0
 # in a directory the name of which can be interpreted numerically
 # are assigned to the button that has this numerical interpretation
 # as its index
-media_dirs = ["/media"]
+media_dirs = ["resources"]
             
 # Name suffices of files that are to be recognized as media files
 extensions = (".wav", ".mp2", ".mp3", ".mp4", ".mpeg")
@@ -32,8 +32,7 @@ from util import *
 
 # This API gives access to the "General Purpose Input/Output"
 # of the Pi board
-import RPi.GPIO as GPIO
-
+#import RPi.GPIO as GPIO
 
 # For handling filesystem paths.
 import os.path
@@ -41,12 +40,12 @@ import os.path
 logLine("Done.")
 
 log("Initializing pins for button input...")
- # Make sure that pins are numbered according to the P1 header of the Pi board.
-GPIO.setmode(GPIO.BOARD)
+# Make sure that pins are numbered according to the P1 header of the Pi board.
+#GPIO.setmode(GPIO.BOARD)
 
 # Set our button channels to input mode:
-for chn in button_channels:
-	GPIO.setup(ch, GPIO.IN)
+#for chn in button_channels:
+#	GPIO.setup(ch, GPIO.IN)
 logLine("Done.")
 
 
@@ -78,3 +77,11 @@ playRandomMedium(media[0])
 
 # Everything is set up.
 # Wait for button presses and play files:
+
+buttonIndex = 1
+while (True):
+	time.sleep(5)
+	
+	playRandomMedium(media[buttonIndex % 3])
+
+	buttonIndex += 1
