@@ -82,6 +82,8 @@ playRandomMedium(media[0])
 # Everything is set up.
 # Wait for button presses and play files:
 
+import time
+
 buttonIndex = 1
 while (True):
 	time.sleep(5)
