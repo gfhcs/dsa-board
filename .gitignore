@@ -55,3 +55,8 @@ docs/_build/
 
 # PyBuilder
 target/
+
+
+# Gereon's local stuff:
+*.directory
+git-gui.sh
