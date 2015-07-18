@@ -135,8 +135,9 @@ class Button(object):
         
     def on_up(self):
         logLine("Button {bi} up!".format(bi=self._index))
-        if not self._processActive():
-            self.play(time.clock() - self._downTime > 3)
-        else:
+        if self._processActive():
             self.abort()
+        else:
+            self.play(time.clock() - self._downTime > 3)
+            
 
