@@ -70,7 +70,7 @@ class Button(object):
     def _processActive(self):
         if self._process is None:
             return False
-        elif not self._process.poll():
+        elif self._process.poll() != 0:
             return True
         else:
             self._process = None
@@ -113,8 +113,10 @@ class Button(object):
         if not self._processActive():
             return
         
+        log("Killing process...")
         self._process.kill()
         self._process = None
+        logLine("Done.")
              
     def _on_edge(self, channel):
         '''
