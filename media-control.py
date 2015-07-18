@@ -19,8 +19,10 @@ log("Initializing pins for button input...")
 GPIO.setmode(GPIO.BOARD)
 
 # Set our button channels to input mode:
-for chn in button_channels:
-	GPIO.setup(ch, GPIO.IN)
+for chn in button_indices.keys():
+	print(chn)
+	GPIO.setup(chn, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+	
 logLine("Done.")
 
 
@@ -57,8 +59,9 @@ logLine("Done. {fc} files have been selected.".format(fc=fc))
 # Wait for button presses and play files:
 
 # Start listening for button events:
-GPIO.add_event_detect(25, GPIO.RISING, callback=lambda channel : on_button_down(button_indices[channel]))
-GPIO.add_event_detect(25, GPIO.FALLING, callback=lambda channel : on_button_up(button_indices[channel]))
+for chn in button_indices.keys():
+	GPIO.add_event_detect(chn, GPIO.RISING, callback=lambda channel : on_button_down(button_indices[channel]))
+	# GPIO.add_event_detect(chn, GPIO.FALLING, callback=lambda channel : on_button_up(button_indices[channel]))
 
 # Play a welcome medium:
 playRandomMedium(media[0])
