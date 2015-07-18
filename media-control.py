@@ -62,11 +62,10 @@ def on_edge(channel):
 	Callback handler for voltage edges.
 	'''
 	on_button_down(button_indices[channel])
-	#time.sleep(20)
 
 # Start listening for button events:
 for chn in button_indices.keys():
-	GPIO.add_event_detect(chn, GPIO.RISING, callback=on_edge)
+	GPIO.add_event_detect(chn, GPIO.RISING, callback=on_edge, bouncetime=300)
 	# GPIO.add_event_detect(chn, GPIO.FALLING, callback=lambda channel : on_button_up(button_indices[channel]))
 
 # Play a welcome medium:
