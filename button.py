@@ -85,7 +85,10 @@ class Button(object):
         if self._processActive():
             return
         
-        filePath = random.choice(self._media)
+        try:
+            filePath = random.choice(self._media)
+        except IndexError:
+            return
         
         playerCommand = 'mpg123'
         loopArg = 'loop -10'
