@@ -63,13 +63,16 @@ def on_edge(channel):
 	'''
 	Handles voltage edges on the button channels.
 	'''
+	
+	time.sleep(0.05)
+	
 	if GPIO.input(channel):
-		on_button_down(button_indices[channel]) 
+		on_button_up(button_indices[channel]) 
 	else: 
-		on_button_up(button_indices[channel])
+		on_button_down(button_indices[channel])
 
 for chn in button_indices.keys():
-	GPIO.add_event_detect(chn, GPIO.BOTH, callback=on_edge, bouncetime=300)
+	GPIO.add_event_detect(chn, GPIO.BOTH, callback=on_edge, bouncetime=50)
 
 
 # Play a welcome medium:
