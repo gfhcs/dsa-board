@@ -68,7 +68,7 @@ def on_edge(channel):
 		on_button_up(button_indices[channel])
 
 for chn in button_indices.keys():
-	GPIO.add_event_detect(chn, GPIO.BOTH, callback=on_edge)
+	GPIO.add_event_detect(chn, GPIO.BOTH, callback=on_edge, bouncetime=300)
 
 
 # Play a welcome medium:
