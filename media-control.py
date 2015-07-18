@@ -40,6 +40,8 @@ logLine("Done. {fc} files have been selected.".format(fc=fc))
 
 # Start listening for button events:
 
+time.sleep(3) # Delay until Pi's audio system is up.
+
 # Play a welcome medium:
 buttons[0].play()
 
