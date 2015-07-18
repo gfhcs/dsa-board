@@ -31,8 +31,16 @@ media_extensions = audio_extensions + video_extensions
 from button import Button
 
 # Maps GPIO pin numbers to button indices
-# TODO: Fill in proper button channels here!
 buttons = dict(map(lambda btn : (btn.getIndex(), btn),
           [Button(7, 0),
            Button(11, 1),
-           Button(13, 2)]))
+           Button(13, 2),
+           Button(15, 3),
+           Button(31, 4),
+           Button(33, 5),
+           Button(35, 6),
+           Button(37, 7),
+           Button(32, 8),
+           Button(36, 9),
+           Button(38, 10),
+           Button(40, 11)]))
