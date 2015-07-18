@@ -56,6 +56,7 @@ for root in media_dirs:
 logLine("Done. {fc} files have been selected.".format(fc=fc))
 
 
+
 # Start listening for button events:
 
 def on_edge(channel):

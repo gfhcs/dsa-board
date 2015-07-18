@@ -24,7 +24,10 @@ button_indices = {7 : 0,
 # in a directory the name of which can be interpreted numerically
 # are assigned to the button that has this numerical interpretation
 # as its index
-media_dirs = map(os.path.abspath, ["resources"])
+
+script_dir = os.path.dirname(os.path.realpath(__file__))
+
+media_dirs = map(os.path.abspath, [os.path.join(script_dir, "resources")])
             
 # Name suffices of files that are to be recognized as media files
 audio_extensions = ".wav", ".mp2", ".mp3"
