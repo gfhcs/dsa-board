@@ -2,36 +2,11 @@
 
 # Copyricht (C) 2015 by the Schwarzenholz Birthday Connection
 
+# The configuration:
+from config import *
 
-# For handling filesystem paths.
-import os.path
 # Helper functions:
 from util import *
-
-
-##############################################################
-# PARAMETERS:
-##############################################################
-
-# Maps GPIO pin numbers to button indices
-# TODO: Fill in proper button channels here!
-button_indices = {1 : 0,
-				  2 : 1,
-				  3 : 2}
-
-# A list of full paths to directories that are to be searched
-# for media.
-# Search happens recursively. All media files that are contained
-# in a directory the name of which can be interpreted numerically
-# are assigned to the button that has this numerical interpretation
-# as its index
-media_dirs = map(os.path.abspath, ["resources"])
-            
-# Name suffices of files that are to be recognized as media files
-extensions = ".wav", ".mp2", ".mp3", ".mp4", ".mpeg"
-
-##############################################################
-
 
 # This API gives access to the "General Purpose Input/Output"
 # of the Pi board
@@ -71,7 +46,7 @@ for root in media_dirs:
 			continue
 		
 		for fn in filenames:
-			if fn.endswith(extensions):
+			if fn.endswith(media_extensions):
 				media[buttonIndex].append(os.path.join(dirpath, fn))
 				fc += 1
 

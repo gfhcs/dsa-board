@@ -7,6 +7,9 @@
 import random
 random.seed()
 
+# The configuration:
+from config import *
+
 # For running shell commands:
 from subprocess import *
 
@@ -42,7 +45,14 @@ def playRandomMedium(mediaPaths):
 	except IndexError:
 		pass
 
+
 def playMedium(filePath):
-	args = ['omxplayer', filePath]
+	
+	playerCommand = 'mpg123'
+	
+	if os.path.splitext(filePath) in video_extensions:
+		playerCommand = 'omxplayer'
+	
+	args = [playerCommand, filePath]
 
 	Popen(args)
