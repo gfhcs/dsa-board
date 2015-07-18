@@ -17,7 +17,7 @@ from subprocess import *
 def log(msg):
 	print(msg, end="")
 
-def logLine(msg):
+def logLine(msg=""):
 	log(msg)
 	log('\n')
 
@@ -54,5 +54,11 @@ def playMedium(filePath):
 		playerCommand = 'omxplayer'
 	
 	args = [playerCommand, filePath]
+
+	log("Command:")
+	for arg in args:
+		log(" "+ arg)
+	
+	logLine()
 
 	Popen(args)
