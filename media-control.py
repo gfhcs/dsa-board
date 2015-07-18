@@ -78,10 +78,10 @@ for chn in button_indices.keys():
 
 # Play a welcome medium:
 playRandomMedium(media[0])
-
  
 def on_button_down(buttonIndex):
 	logLine("Button {bi} down!".format(bi=buttonIndex))
+	playRandomMedium(media[buttonIndex])
 	
 def on_button_up(buttonIndex):
 	logLine("Button {bi} up!".format(bi=buttonIndex))
