@@ -66,9 +66,6 @@ def on_edge(channel):
 		on_button_down(button_indices[channel]) 
 	else: 
 		on_button_up(button_indices[channel])
-		
-	time.sleep(20) # Cool down, to avoid multiple handlers for one button event.
-
 
 for chn in button_indices.keys():
 	GPIO.add_event_detect(chn, GPIO.BOTH, callback=on_edge)
