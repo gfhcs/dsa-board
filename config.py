@@ -7,16 +7,10 @@ Created on 18.07.2015
 # For handling filesystem paths.
 import os.path
 
-
 ##############################################################
 # PARAMETERS:
 ##############################################################
 
-# Maps GPIO pin numbers to button indices
-# TODO: Fill in proper button channels here!
-button_indices = {7 : 0,
-                  11 : 1,
-                  13 : 2}
 
 # A list of full paths to directories that are to be searched
 # for media.
@@ -27,11 +21,18 @@ button_indices = {7 : 0,
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 
-media_dirs = map(os.path.abspath, [os.path.join(script_dir, "resources")])
+media_dirs = map(os.path.abspath, [os.path.join(script_dir, "resources"), "/media"])
             
 # Name suffices of files that are to be recognized as media files
 audio_extensions = ".wav", ".mp2", ".mp3"
 video_extensions = ".mp4", ".mpeg", ".mov"
 media_extensions = audio_extensions + video_extensions
 
-##############################################################
+from button import Button
+
+# Maps GPIO pin numbers to button indices
+# TODO: Fill in proper button channels here!
+buttons = dict(map(lambda btn : (btn.getIndex(), btn),
+          [Button(7, 0),
+           Button(11, 1),
+           Button(13, 2)]))

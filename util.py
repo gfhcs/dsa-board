@@ -3,16 +3,6 @@
 
 # coding=utf8
 
-# For randomness:
-import random
-random.seed()
-
-# The configuration:
-from config import *
-
-# For running shell commands:
-from subprocess import *
-
 
 def log(msg):
 	print(msg, end="")
@@ -35,30 +25,4 @@ def interpretNumerically(fileName):
 		raise ValueError("Could not interpret the file name '{fileName}' as a number!".format(fileName=fileName))
 
 
-def playRandomMedium(mediaPaths):
-	'''
-	Randomly selects one of the given media paths and plays the designated file.
-	The given iterable must contain full paths.
-	'''
-	try:
-		playMedium(random.choice(mediaPaths))
-	except IndexError:
-		pass
-
-
-def playMedium(filePath):
 	
-	playerCommand = 'mpg123'
-	
-	if filePath.endswith(video_extensions):
-		playerCommand = 'omxplayer'
-	
-	args = [playerCommand, filePath]
-
-	log("Command:")
-	for arg in args:
-		log(" "+ arg)
-	
-	logLine()
-
-	Popen(args)
