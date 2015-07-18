@@ -70,7 +70,7 @@ class Button(object):
     def _processActive(self):
         if self._process is None:
             return False
-        elif self._process.poll():
+        elif not self._process.poll():
             return True
         else:
             self._process = None
