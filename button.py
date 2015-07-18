@@ -38,7 +38,7 @@ class Button(object):
         self._media = []
         self._enabled = False
         
-        self._downTime = 0
+        self._downTime = time.time()
         
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
@@ -88,7 +88,7 @@ class Button(object):
         filePath = random.choice(self._media)
         
         playerCommand = 'mpg123'
-        loopArg = '--loop -1'
+        loopArg = 'loop -10'
         
         if filePath.endswith(video_extensions):
             playerCommand = 'omxplayer'
@@ -127,19 +127,22 @@ class Button(object):
         
         # The assignment of channel value to even type is mysterious to me...
         if GPIO.input(channel):
-            self.on_up() 
+            self.on_up()
         else: 
             self.on_down()
 
     def on_down(self):
         logLine("Button {bi} down!".format(bi=self._index))
-        self._downTime = time.clock()
+        self._downTime = time.time()
         
     def on_up(self):
         logLine("Button {bi} up!".format(bi=self._index))
+        
+        logLine(time.time() - self._downTime)
+        
         if self._processActive():
             self.abort()
         else:
-            self.play(time.clock() - self._downTime > 3)
+            self.play(time.time() - self._downTime >= 3)
             
 
