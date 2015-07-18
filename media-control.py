@@ -12,7 +12,8 @@ from util import *
 # of the Pi board
 import RPi.GPIO as GPIO
 
-
+# For sleeping between button events.
+import time
 
 log("Initializing pins for button input...")
  # Make sure that pins are numbered according to the P1 header of the Pi board.
@@ -55,9 +56,6 @@ for root in media_dirs:
 logLine("Done. {fc} files have been selected.".format(fc=fc))
 
 
-# Everything is set up.
-# Wait for button presses and play files:
-
 # Start listening for button events:
 for chn in button_indices.keys():
 	GPIO.add_event_detect(chn, GPIO.RISING, callback=lambda channel : on_button_down(button_indices[channel]))
@@ -75,7 +73,8 @@ def on_button_up(buttonIndex):
   
 try:  
 
-    sleep(float('inf'))         # wait 30 seconds  
+	while True:
+		time.sleep(3600)        # wait 30 seconds  
   
 finally:                   # this block will run no matter how the try block exits  
     GPIO.cleanup()         # clean up after yourself  
