@@ -43,6 +43,6 @@ def playRandomMedium(mediaPaths):
 		pass
 
 def playMedium(filePath):
-	args = ['vlc', '-f', '--video-on-top', '--no-random', '--no-video-title-show', filePath, 'vlc://quit']
+	args = ['omxplayer', filePath]
 
 	Popen(args)
