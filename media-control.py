@@ -64,8 +64,9 @@ def on_edge(channel):
 	Handles voltage edges on the button channels.
 	'''
 	
-	time.sleep(0.05)
+	time.sleep(0.05) # Without this sleep, the GPIO.input call apparently alwways returns True
 	
+	# The assignment of channel value to even type is mysterious to me...
 	if GPIO.input(channel):
 		on_button_up(button_indices[channel]) 
 	else: 
