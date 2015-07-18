@@ -50,7 +50,7 @@ def playMedium(filePath):
 	
 	playerCommand = 'mpg123'
 	
-	if os.path.splitext(filePath) in video_extensions:
+	if filePath.endswith(video_extensions):
 		playerCommand = 'omxplayer'
 	
 	args = [playerCommand, filePath]
