@@ -13,6 +13,7 @@ from config import *
 import RPi.GPIO as GPIO
 import random
 random.seed()
+import time
 
 from subprocess import *
 
@@ -47,7 +48,7 @@ class Button(object):
     def enable(self):
         if self._enabled:
             return
-        GPIO.add_event_detect(self._pin, GPIO.BOTH, callback=self.on_edge, bouncetime=50)
+        GPIO.add_event_detect(self._pin, GPIO.BOTH, callback=self._on_edge, bouncetime=50)
         self._enabled = True
         
     def disable(self):
@@ -66,13 +67,22 @@ class Button(object):
     def assignMedium(self, path):
         self._media.append(path)
         
+    def _processActive(self):
+        if self._process is None:
+            return False
+        elif self._process.poll():
+            return True
+        else:
+            self._process = None
+            return False
+        
     def play(self, loop=False):
         '''
         Randomly selects one of the assigned media and plays it.
         :param loop: Loops the selected medium indefinetly.
         '''
         
-        if self._process is not None:
+        if self._processActive():
             return
         
         filePath = random.choice(self._media)
@@ -100,7 +110,7 @@ class Button(object):
         self._process = Popen(args)
         
     def abort(self):
-        if self._process is None:
+        if not self._processActive():
             return
         
         self._process.kill()
@@ -125,8 +135,8 @@ class Button(object):
         
     def on_up(self):
         logLine("Button {bi} up!".format(bi=self._index))
-        if self._process is None:
+        if not self._processActive():
             self.play(time.clock() - self._downTime > 3)
         else:
-            self._abort()
+            self.abort()
 
